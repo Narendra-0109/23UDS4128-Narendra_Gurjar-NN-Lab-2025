@@ -1,0 +1,48 @@
+import numpy as np
+import pandas as pd
+
+class PerceptronGD:
+    def __init__(self, learning_rate=0.01, epochs=100):
+        self.lr = learning_rate
+        self.epochs = epochs
+        self.weights = None
+        self.bias = None
+
+    def fit(self, X, y):
+        n_samples, n_features = X.shape
+        self.weights = np.zeros(n_features)
+        self.bias = 0
+        
+        for _ in range(self.epochs):
+            gradients_w = np.zeros(n_features)
+            gradient_b = 0
+            
+            for i in range(n_samples):
+                linear_output = np.dot(X[i], self.weights) + self.bias
+                y_predicted = self.activation_function(linear_output)
+                error = y[i] - y_predicted
+                
+                gradients_w += error * X[i]
+                gradient_b += error
+                
+            self.weights += self.lr * gradients_w / n_samples
+            self.bias += self.lr * gradient_b / n_samples
+
+    def activation_function(self, x):
+        return 1 if x >= 0 else 0
+    
+    def predict(self, X):
+        linear_output = np.dot(X, self.weights) + self.bias
+        return np.array([self.activation_function(x) for x in linear_output])
+
+# Example usage
+if __name__ == "__main__":
+    # Sample dataset (AND gate)
+    data = pd.DataFrame({"x1": [0, 0, 1, 1], "x2": [0, 1, 0, 1], "y": [0, 0, 0, 1]})
+    X = data.iloc[:, :-1].values
+    y = data.iloc[:, -1].values
+
+    perceptron = PerceptronGD(learning_rate=0.1, epochs=10)
+    perceptron.fit(X, y)
+    
+    print("Predictions:", perceptron.predict(X))

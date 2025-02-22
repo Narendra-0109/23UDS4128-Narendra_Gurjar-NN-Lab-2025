@@ -1,3 +1,14 @@
+Objective :
+This project implements the Perceptron Learning Algorithm using NumPy in Python. The goal is to evaluate the performance of a single perceptron on the NAND and XOR truth tables and then extend it to a Multi-Layer Perceptron (MLP) to classify Boolean functions.
+
+Description of the Model :
+This implementation follows a multi-layer perceptron (MLP) approach where:
+
+Individual perceptrons are trained to recognize Boolean functions (NAND, Custom functions).
+The outputs of these perceptrons are then combined to train a final perceptron for binary classification.
+The model is evaluated using accuracy.
+
+# libraries
 import numpy as np
 
 def sigmoid(x):
@@ -57,3 +68,23 @@ mlp.fit(X, y)
 
 # Predictions
 print("Predictions:", mlp.predict(X))
+
+Explanation of the Code :
+Libraries Used
+NumPy is used for numerical operations and matrix calculations.
+Perceptron Class :
+The perceptron model initializes random weights and applies a learning rule based on error correction.
+Activation Function
+Uses a threshold-based step function to classify inputs.
+Training Process
+Implements the perceptron learning algorithm with weight updates based on errors.
+
+Evaluation :
+Accuracy is computed based on correct classifications.
+
+Results and Performance :
+Fun1 Accuracy: 100.00% | Predictions: [0 0 0 1]
+Fun2 Accuracy: 100.00% | Predictions: [0 0 1 0]
+Fun3 Accuracy: 100.00% | Predictions: [0 1 0 0]
+Fun4 Accuracy: 100.00% | Predictions: [1 0 0 0]
+Final Perceptron Accuracy: 100.00% | Predictions: [0 1 1 0]

@@ -1,12 +1,12 @@
-MNIST Classification using TensorFlow (Without Keras)
+# MNIST Classification using TensorFlow (Without Keras)
 
-**Objective:**
+## **Objective:**
 This project implements a three-layer neural network using TensorFlow (without Keras) to classify the MNIST handwritten digits dataset. The implementation demonstrates both feed-forward and back-propagation approaches.
 
- **Description of the Model:**
+## **Description of the Model:**
 This is a three-layer neural network designed for classifying handwritten digits from the MNIST dataset.
 
- **Model Architecture:**
+### **Model Architecture:**
 - **Input Layer (784 neurons):** Accepts flattened 28x28 pixel images.
 - **Hidden Layer 1 (128 neurons):** Uses ReLU activation to learn non-linear features.
 - **Hidden Layer 2 (64 neurons):** Uses ReLU activation for deeper representation.
@@ -15,7 +15,7 @@ This is a three-layer neural network designed for classifying handwritten digits
 - **Optimizer:** Adam Optimizer.
 - **Training:** Mini-batch Gradient Descent with batch size = 32.
 
- **Python Implementation**
+## **Python Implementation**
 ```python
 import tensorflow as tf
 import numpy as np
@@ -104,40 +104,39 @@ with tf.compat.v1.Session() as sess:
     print(f"\nTest Accuracy: {test_acc:.4f}")
 ```
 
-**Code Explanation:**
-**1. Load & Preprocess Data**
+## **Code Explanation:**
+### **1. Load & Preprocess Data**
 - Normalize images (x_train & x_test in range [0,1]).
 - Flatten images (28x28 → 784).
 - Convert labels to one-hot encoding.
 
-**2. Initialize Model Parameters**
+### **2. Initialize Model Parameters**
 - Weights (W1, W2, W3) initialized with small random values.
 - Biases (b1, b2, b3) initialized as zeros.
 
- **3. Feed-Forward Propagation**
+### **3. Feed-Forward Propagation**
 - Layer 1: `a1 = ReLU(X * W1 + b1)`.
 - Layer 2: `a2 = ReLU(a1 * W2 + b2)`.
 - Output Layer: `softmax(a2 * W3 + b3)`.
 
- **4. Loss Calculation**
+### **4. Loss Calculation**
 - Uses `softmax_cross_entropy_with_logits()`.
 
- **5. Backpropagation & Optimization**
+### **5. Backpropagation & Optimization**
 - Uses `AdamOptimizer()`.
 - Updates weights and biases.
 
-**6. Training (Mini-Batch Gradient Descent)**
+### **6. Training (Mini-Batch Gradient Descent)**
 - Iterates through 20 epochs with batch size = 32.
 - Prints training loss & accuracy.
 
- **7. Testing**
+### **7. Testing**
 - Evaluates the trained model on test data.
 
- **My Comments:**
+## **My Comments:**
 - ✅ **Good Implementation:** Uses raw TensorFlow without Keras for full control.
 - ✅ **Efficient Training:** Uses mini-batch gradient descent.
 - ✅ **Basic Model:** Works well for MNIST but may not generalize to complex tasks.
 - 🔹 **Improvement Suggestion:** Use Adam optimizer instead of SGD for faster convergence.
 - 🔹 **TensorFlow v2 Compatibility:** Use `tf.compat.v1.disable_eager_execution()` for TF2 users.
-
 
